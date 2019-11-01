@@ -19,7 +19,6 @@ defmodule TimesheetWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/sessionworker", WorkerController, :main
     resources "/managers", ManagerController
     resources "/workers", WorkerController
     resources "/jobs", JobController

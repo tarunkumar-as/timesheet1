@@ -7,16 +7,12 @@ defmodule TimesheetWeb.SessionmanagerController do
 
 
     def create(conn, %{"email" => email, "password" => password}) do
-      IO.inspect("password")
-      IO.inspect(password)
-      IO.inspect("passwordend")
-      user = Timesheet.Managers.authenticate(email, password)
       #user = Timesheet.Managers.get_manager_by_email(email)
+      user = Timesheet.Managers.authenticate(email, password)
         if user do
           conn
           |> put_session(:user_id, user.id)
           |> put_flash(:info, "Welcome back #{user.email}")
-          #|> redirect(to: Routes.page_path(conn, :index))
           |> redirect(to: Routes.manager_path(conn, :index))
         else
           conn

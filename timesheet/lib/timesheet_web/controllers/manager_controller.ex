@@ -3,12 +3,12 @@ defmodule TimesheetWeb.ManagerController do
 
   alias Timesheet.Managers
   alias Timesheet.Managers.Manager
+  alias Timesheet.Tasks
+  alias Timesheet.Tasks.Task
 
   def index(conn, _params) do
     managers = Managers.list_managers()
-    IO.inspect(managers)
     render(conn, "index.html", managers: managers)
-    
   end
 
   def new(conn, _params) do

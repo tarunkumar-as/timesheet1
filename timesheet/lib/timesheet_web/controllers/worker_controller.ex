@@ -3,15 +3,13 @@ defmodule TimesheetWeb.WorkerController do
 
   alias Timesheet.Workers
   alias Timesheet.Workers.Worker
-
-  def main(conn, _params) do
-    worker = Workers.list_worker()
-    render(conn, "main.html", worker: worker)
-  end 
+  alias Timesheet.Tasks
+  alias Timesheet.Tasks.Task
 
   def index(conn, _params) do
     worker = Workers.list_worker()
-    render(conn, "index.html", worker: worker)
+    tasks = Tasks.list_tasks()
+    render(conn, "index.html", worker: worker, tasks: tasks)
   end
 
   def new(conn, _params) do

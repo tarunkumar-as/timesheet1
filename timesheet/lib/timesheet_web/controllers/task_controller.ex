@@ -1,8 +1,12 @@
 defmodule TimesheetWeb.TaskController do
   use TimesheetWeb, :controller
 
+  alias Timesheet.Workers
+  alias Timesheet.Workers.Worker
   alias Timesheet.Tasks
   alias Timesheet.Tasks.Task
+  alias Timesheet.Jobs
+  alias Timesheet.Jobs.Job
 
   def index(conn, _params) do
     tasks = Tasks.list_tasks()
@@ -11,15 +15,18 @@ defmodule TimesheetWeb.TaskController do
 
   def new(conn, _params) do
     changeset = Tasks.change_task(%Task{})
-    render(conn, "new.html", changeset: changeset)
+    jobs = Jobs.list_jobs()
+    render(conn, "new.html", changeset: changeset, jobs: jobs)
   end
 
   def create(conn, %{"task" => task_params}) do
+    IO.inspect(task_params)
     case Tasks.create_task(task_params) do
       {:ok, task} ->
+        worker = Workers.list_worker()
         conn
         |> put_flash(:info, "Task created successfully.")
-        |> redirect(to: Routes.task_path(conn, :show, task))
+        |> redirect(to: Routes.worker_path(conn, :index, worker))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

@@ -1,3 +1,7 @@
+<span><%= link "New Task", to: Routes.task_path(@conn, :new) %></span>
+
+
+
 <h1>Listing Managers</h1>
 
 
