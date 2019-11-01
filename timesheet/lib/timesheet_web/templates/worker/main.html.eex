@@ -1,0 +1,4 @@
+<h1>Listing Worker</h1>
+
+
+<span><%= link "New Worker", to: Routes.worker_path(@conn, :new) %></span>
