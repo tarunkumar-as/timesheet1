@@ -1,0 +1,16 @@
+[Unit]
+Description=Timesheet Application
+
+[Service]
+Type=simple
+User=timesheet1
+Group=timesheet1
+Restart=on-failure
+Environment=MIX_ENV=prod "PORT=5001"
+Environment=LANG=en_US.UTF-8
+
+WorkingDirectory=/home/timesheet1/timesheet1/timesheet
+ExecStart=/bin/bash /home/timesheet1/timesheet1/timesheet/start.sh
+
+[Install]
+WantedBy=multi-user.target
