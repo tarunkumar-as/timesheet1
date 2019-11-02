@@ -1,3 +1,5 @@
+(<%= link("Logout", to: Routes.sessionmanager_path(@conn, :delete),
+              method: :delete) %>)
 <table>Tasks
   <thead>
     <tr>

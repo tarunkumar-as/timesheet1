@@ -8,7 +8,7 @@ defmodule TimesheetWeb.WorkerController do
 
   def index(conn, _params) do
     worker = Workers.list_worker()
-    tasks = Tasks.list_tasks()
+    tasks = Enum.filter(Tasks.list_tasks(), fn x -> x.worker_id == conn.assigns[:current_user].id end)
     render(conn, "index.html", worker: worker, tasks: tasks)
   end
 
@@ -31,7 +31,8 @@ defmodule TimesheetWeb.WorkerController do
 
   def show(conn, %{"id" => id}) do
     worker = Workers.get_worker!(id)
-    render(conn, "show.html", worker: worker)
+    tasks = Enum.filter(Tasks.list_tasks(), fn x -> x.worker_id == conn.assigns[:current_user].id end)
+    render(conn, "index.html", worker: worker, tasks: tasks)
   end
 
   def edit(conn, %{"id" => id}) do

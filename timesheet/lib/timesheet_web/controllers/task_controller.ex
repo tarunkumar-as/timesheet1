@@ -20,7 +20,9 @@ defmodule TimesheetWeb.TaskController do
   end
 
   def create(conn, %{"task" => task_params}) do
-    IO.inspect(task_params)
+
+    jobs = Jobs.list_jobs()  
+    task_params = Map.put(task_params, "worker_id", conn.assigns[:current_user].id)
     case Tasks.create_task(task_params) do
       {:ok, task} ->
         worker = Workers.list_worker()

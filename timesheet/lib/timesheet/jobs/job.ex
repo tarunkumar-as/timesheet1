@@ -15,7 +15,7 @@ defmodule Timesheet.Jobs.Job do
   @doc false
   def changeset(job, attrs) do
     job
-    |> cast(attrs, [:job_code, :budget_hours, :job_name, :description])
-    |> validate_required([:job_code, :budget_hours, :job_name, :description])
+    |> cast(attrs, [:job_code, :budget_hours, :job_name, :description, :manager_id])
+    |> validate_required([:job_code, :budget_hours, :job_name, :description, :manager_id])
   end
 end

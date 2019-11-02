@@ -5,17 +5,29 @@
     </div>
   <% end %>
 
-  <%= label f, :job_code %>
-  <%= select f, :role, ["here": Enum.map(@jobs, fn x -> x.id end)], prompt: "Choose your role"%>
-  <%= error_tag f, :job_code %>
+  <%= if @isEditing == true do %>
+  
+    <%= label f, :approval %>
+  	<%= checkbox f, :approval %>
+  	<%= error_tag f, :approval %>
+  
+  <% else %>
+      
+    <%= label f, :job_code %>
+    <%= select f, :job_code, Enum.map(@jobs, fn x -> x.id end), prompt: "Choose your role"%>
+    <%= error_tag f, :job_code %>
+      
+    <%= label f, :hours %>
+  	<%= number_input f, :hours %>
+  	<%= error_tag f, :hours %>
 
-  <%= label f, :hours %>
-  <%= number_input f, :hours %>
-  <%= error_tag f, :hours %>
+  	<%= label f, :note %>
+  	<%= text_input f, :note %>
+  	<%= error_tag f, :note %>
+  
+  <% end %>
 
-  <%= label f, :note %>
-  <%= text_input f, :note %>
-  <%= error_tag f, :note %>
+  
 
   <div>
     <%= submit "Save" %>

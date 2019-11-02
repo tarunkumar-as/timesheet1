@@ -5,10 +5,20 @@ defmodule TimesheetWeb.ManagerController do
   alias Timesheet.Managers.Manager
   alias Timesheet.Tasks
   alias Timesheet.Tasks.Task
+  alias Timesheet.Jobs
+  alias Timesheet.Jobs.Job
+  alias Timesheet.Workers
+  alias Timesheet.Workers.Worker
 
   def index(conn, _params) do
     managers = Managers.list_managers()
-    render(conn, "index.html", managers: managers)
+    filteredWorkers = Enum.filter(Workers.list_workers(), fn x -> x.manager_id == conn.assigns[:current_user].id end)
+    filteredWorkersIds = Enum.map(filteredWorkers, fn x -> x.id  end)
+    givenTasks = Enum.filter(Tasks.list_tasks(), fn x -> Enum.find(filteredWorkersIds, fn y -> y == x.worker_id end) != nil end)
+    
+    #tasks = Tasks.list_tasks()
+    
+    render(conn, "index.html", managers: managers, tasks: givenTasks)
   end
 
   def new(conn, _params) do
@@ -17,7 +27,6 @@ defmodule TimesheetWeb.ManagerController do
   end
 
   def create(conn, %{"manager" => manager_params}) do
-    IO.inspect(manager_params)
     case Managers.create_manager(manager_params) do
       {:ok, manager} ->
         conn

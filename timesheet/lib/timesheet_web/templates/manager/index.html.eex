@@ -1,39 +1,38 @@
-<span><%= link "New Task", to: Routes.task_path(@conn, :new) %></span>
-
-
-
-<h1>Listing Managers</h1>
-
-
-            (<%= link("Logout", to: Routes.sessionmanager_path(@conn, :delete),
+(<%= link("Logout", to: Routes.sessionmanager_path(@conn, :delete),
               method: :delete) %>)
-<table>
+<table>Tasks
   <thead>
     <tr>
-      <th>Email</th>
-      <th>Name</th>
+      <th>Job Code</th>
+      <th>Hours</th>
+      <th>Note</th>
+      <th>Approval</th>
 
-      
-      <th>Delete this</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for manager <- @managers do %>
+<%= for i <- 0..7 do %>
     <tr>
-      <td><%= manager.email %></td>
-      <td><%= manager.name %></td>
-    
-
-      <td>
-        <span><%= link "Show", to: Routes.manager_path(@conn, :show, manager) %></span>
-        <span><%= link "Edit", to: Routes.manager_path(@conn, :edit, manager) %></span>
-        <span><%= link "Delete", to: Routes.manager_path(@conn, :delete, manager), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
+      <%= if Enum.at(@tasks,i,nil) == nil do %>
+        <td> </td>
+      	<td> </td>
+      	<td> </td>
+      	<td> </td>
+      <% else %>
+		<td><%= 
+		IO.inspect(@tasks)
+		Enum.at(@tasks,i,nil).job_code 
+		
+		%></td>
+      	<td><%= Enum.at(@tasks,i,nil).hours %></td>
+      	<td><%= Enum.at(@tasks,i,nil).note %></td>
+      	<td><%= Enum.at(@tasks,i,nil).approval %></td>
+      	<td><span><%= link "Edit", to: Routes.task_path(@conn, :edit, Enum.at(@tasks,i,nil)) %></span></td>
+      <% end %>
+      
     </tr>
+    
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Manager", to: Routes.manager_path(@conn, :new) %></span>
-<h2>Log In</h2>
-
