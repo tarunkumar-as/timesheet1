@@ -6,30 +6,32 @@
   <% end %>
 
   <%= if @isEditing == true do %>
-  
+    <div>  
     <%= label f, :approval %>
   	<%= checkbox f, :approval %>
   	<%= error_tag f, :approval %>
-  
+    </div>
   <% else %>
-      
+    <div class="mt-2">
     <%= label f, :job_code %>
     <%= select f, :job_code, Enum.map(@jobs, fn x -> x.id end), prompt: "Choose your role"%>
     <%= error_tag f, :job_code %>
-      
+    </div>
+    <div class="mt-2">  
     <%= label f, :hours %>
   	<%= number_input f, :hours %>
   	<%= error_tag f, :hours %>
-
+    </div>
+    <div class="mt-2">
   	<%= label f, :note %>
   	<%= text_input f, :note %>
   	<%= error_tag f, :note %>
-  
+    </div>
   <% end %>
 
   
 
-  <div>
+  <div class="mt-2">
     <%= submit "Save" %>
   </div>
 <% end %>

@@ -1,6 +1,8 @@
-(<%= link("Logout", to: Routes.sessionmanager_path(@conn, :delete),
-              method: :delete) %>)
-<table>Tasks
+
+<%= link("Logout", to: Routes.sessionmanager_path(@conn, :delete),
+              method: :delete) %>
+<div></div>
+<table class="table table-striped table-bordered table-hover table-sm">Time Records
   <thead>
     <tr>
       <th>Job Code</th>
@@ -15,10 +17,10 @@
 <%= for i <- 0..7 do %>
     <tr>
       <%= if Enum.at(@tasks,i,nil) == nil do %>
-        <td> </td>
-      	<td> </td>
-      	<td> </td>
-      	<td> </td>
+        <td>-</td>
+      	<td>-</td>
+      	<td>-</td>
+      	<td>-</td>
       <% else %>
 		<td><%= 
 		IO.inspect(@tasks)

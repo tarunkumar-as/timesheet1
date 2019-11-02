@@ -15,8 +15,8 @@ alias Timesheet.Workers.Worker
 alias Timesheet.Tasks.Task
 alias Timesheet.Jobs.Job
 
-pass = Argon2.hash_pwd_salt("password")
-Repo.insert!(%Manager{name: "Alice", email: "alice@example.com", password_hash: pass})
+pass = Argon2.hash_pwd_salt("timesheet")
+Repo.insert!(%Manager{name: "Tarun", email: "tarun@gmail.com", password_hash: pass})
 Repo.insert!(%Manager{name: "Bob", email: "bob@example.com", password_hash: pass})
 
 Repo.insert!(%Worker{name: "Charlie", email: "charlie@example.com", password_hash: pass, manager_id: 1})

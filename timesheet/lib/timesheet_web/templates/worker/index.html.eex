@@ -1,30 +1,26 @@
-(<%= link("Logout", to: Routes.sessionmanager_path(@conn, :delete),
-              method: :delete) %>)
-<table>Tasks
+
+<%= link("Logout", to: Routes.sessionmanager_path(@conn, :delete),
+              method: :delete) %>
+<div></div>
+<table class="table table-striped table-bordered table-hover table-sm">Time Records
   <thead>
     <tr>
       <th>Job Code</th>
       <th>Hours</th>
       <th>Note</th>
       <th>Approval</th>
-
-      <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for i <- 0..7 do %>
     <tr>
       <%= if Enum.at(@tasks,i,nil) == nil do %>
-        <td> </td>
-      	<td> </td>
-      	<td> </td>
-      	<td> </td>
+        <td>-</td>
+      	<td>-</td>
+      	<td>-</td>
+      	<td>-</td>
       <% else %>
-		<td><%= 
-		IO.inspect(@tasks)
-		Enum.at(@tasks,i,nil).job_code 
-		
-		%></td>
+		<td><%= Enum.at(@tasks,i,nil).job_code %></td>
       	<td><%= Enum.at(@tasks,i,nil).hours %></td>
       	<td><%= Enum.at(@tasks,i,nil).note %></td>
       	<td><%= Enum.at(@tasks,i,nil).approval %></td>
@@ -36,4 +32,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Task", to: Routes.task_path(@conn, :new) %></span>
+<span><%= link "Create New Record", to: Routes.task_path(@conn, :new) %></span>
