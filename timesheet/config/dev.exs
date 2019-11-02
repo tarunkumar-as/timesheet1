@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :timesheet, Timesheet.Repo,
-  username: "tarun",
-  password: "4241",
+  username: "timesheet1",
+  password: "Da8ahhahghee",
   database: "timesheet_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
