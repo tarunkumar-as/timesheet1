@@ -12,7 +12,7 @@ This Repository contains the Timesheet application for a company having managers
 
 -) The database consisits of 4 tables - Managers, Workers, Jobs and Tasks.
 
--) The Manager table and the Worker ttable consists of email password and the user name. The password is hashed using Argona and hence even if the database is compromised the password will be leaked to the hacker.
+-) The Manager table and the Worker ttable consists of email password and the user name. The password is hashed using Argon and hence even if the database is compromised the password will be leaked to the hacker.
 
 -) The Jobs table consists of job code, number of hours of the job, the job name, its description and the manager who will be approving the timesheet records associated to the particular job.
 
@@ -20,3 +20,12 @@ This Repository contains the Timesheet application for a company having managers
 
 -) The sample manager id and passowrds are mentioned in the seeds.exs files.
 
+
+
+
+Attribution
+
+https://getbootstrap.com/docs/4.0/content/tables/
+https://hexdocs.pm/elixir/Enum.html
+https://elixir-lang.org/getting-started/debugging.html
+http://elixirschool.com/en
