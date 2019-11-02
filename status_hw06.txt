@@ -13,7 +13,7 @@ https://github.com/tarunkumar-as/timesheet1
 
 
 3. What's the version number of your github release?
-1.0
+1.0.0
 
 
 4. What's the URL that you deployed to?
